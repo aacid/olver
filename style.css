@@ -1,0 +1,26 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+}
+#terminal {
+    padding: 10px;
+}
+#output {
+    display: flex;
+    flex-direction: column;
+}
+div.line {
+    display: block;
+    width: 100%;
+}
+#input {
+    border: none;
+    background: none;
+    color: white;
+    font-family: monospace;
+    width: 100%;
+    outline: none;
+}
