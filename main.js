@@ -27,7 +27,7 @@ window.addEventListener("load", () => {
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
-        addLine(`> ${input.innerHTML}`);
+        addLine(input.innerHTML, true);
         parseCommand(input.innerHTML);
         input.innerHTML = "";
     } else if (allowedCodes.includes(event.code)) {
@@ -57,9 +57,16 @@ const parseCommand = (command) => {
     }
 }
 
-const addLine = (content) => {
+const addLine = (content, isPrompt = false) => {
     const line = document.createElement("div");
     line.className = "line";
-    line.textContent = content;
+    if (isPrompt) {
+        const c = document.createElement("span");
+        c.textContent = ">"
+        line.appendChild(c);
+    }
+    const t = document.createElement("span");
+    t.textContent = content;
+    line.appendChild(t);
     document.getElementById("output").appendChild(line);
 };

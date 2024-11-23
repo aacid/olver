@@ -1,26 +1,42 @@
 body {
-    background-color: black;
+    background-color: gray;
     color: white;
     font-family: monospace;
     margin: 0;
     padding: 0;
 }
+
 #terminal {
+    margin-left: auto;
+    margin-right: auto;
+    width: 640px;
+    height: 480px;
+    background-color: black;
     padding: 10px;
 }
+
 #output {
     display: flex;
     flex-direction: column;
+    column-gap: 1px;
 }
+
 div.line {
-    display: block;
-    width: 100%;
+    display: flex;
+    column-gap: 1px;
 }
+
 #input {
     border: none;
     background: none;
     color: white;
     font-family: monospace;
-    width: 100%;
     outline: none;
+}
+
+#prompt {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    column-gap: 1px;
 }
