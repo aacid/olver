@@ -1,6 +1,4 @@
-const input = document.getElementById("input");
-const output = document.getElementById("output");
-const allowedCodes = [
+const ALLOWED_CHARCODES = [
     ...Array.from(
         { length: 26 },
         (_, i) => `Key${String.fromCharCode(65 + i)}`
@@ -22,18 +20,21 @@ const allowedCodes = [
     "Period",
 ];
 
+const INPUT_DIV = document.getElementById("input");
+const OUTPUT_DIV = document.getElementById("output");
+
 window.addEventListener("load", () => {
-    input.value = "";
+    INPUT_DIV.value = "";
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
-        addLine(`> ${input.innerHTML}`);
-        parseCommand(input.innerHTML);
-        input.innerHTML = "";
-    } else if (allowedCodes.includes(event.code)) {
-        input.innerHTML += event.key;
+        addLine(`> ${INPUT_DIV.innerHTML}`);
+        parseCommand(INPUT_DIV.innerHTML);
+        INPUT_DIV.innerHTML = "";
+    } else if (ALLOWED_CHARCODES.includes(event.code)) {
+        INPUT_DIV.innerHTML += event.key;
     } else if (event.key === "Backspace") {
-        input.innerHTML = input.innerHTML.slice(0, -1);
+        INPUT_DIV.innerHTML = INPUT_DIV.innerHTML.slice(0, -1);
     }
 });
 
@@ -46,7 +47,7 @@ const parseCommand = (command) => {
             addLine("info - Show information about Olver Labs");
             break;
         case "clear":
-            output.innerHTML = "";
+            OUTPUT_DIV.innerHTML = "";
             break;
         case "info":
             addLine("Olver Labs is a software development company");
@@ -55,7 +56,7 @@ const parseCommand = (command) => {
         default:
             addLine("Command not found");
     }
-}
+};
 
 const addLine = (content) => {
     const line = document.createElement("div");
