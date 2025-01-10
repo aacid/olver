@@ -38,20 +38,37 @@ window.addEventListener("keydown", (event) => {
     }
 });
 
-const parseCommand = (command) => {
+const parseCommand = (commandLine) => {
+    const words = commandLine.split(" ");
+    const command = words[0];
     switch (command) {
         case "help":
             addLine("Available commands:");
             addLine("help - Show this message");
             addLine("clear - Clear the screen");
-            addLine("info - Show information about Olver Labs");
+            addLine("ls - list files");
+            addLine("cat - display file");
             break;
         case "clear":
             OUTPUT_DIV.innerHTML = "";
             break;
-        case "info":
-            addLine("Olver Labs is a software development company");
-            addLine("This page is work in progress");
+        case "ls":
+            addLine("info photo");
+            break;
+        case "cat":
+            switch (words[1]) {
+                case "info":
+                    addLine("Olver Labs is a software development company");
+                    addLine("This page is work in progress");
+                    addLine("");
+                    addLine("olverweb v0.2");
+                    break;
+                case "photo":
+                    window.open("cat.jpg", "_blank").focus();
+                    break;
+                default:
+                    addLine("cat: invalid argument " + words[1]);
+            }
             break;
         default:
             addLine("Command not found");
@@ -61,6 +78,9 @@ const parseCommand = (command) => {
 const addLine = (content) => {
     const line = document.createElement("div");
     line.className = "line";
+    if (content === "") {
+        content = "\xa0";
+    }
     line.textContent = content;
     document.getElementById("output").appendChild(line);
 };
